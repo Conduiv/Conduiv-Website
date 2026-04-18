@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Page not found · Conduiv</title>
+<meta name="description" content="The page you're looking for doesn't exist on conduiv.com. Head back to the homepage or explore the free security tools.">
+<meta name="robots" content="noindex,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<link rel="icon" type="image/svg+xml" href="/logo.svg">
+<style>
+  .nf {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+  }
+  .nf-card {
+    max-width: 640px;
+    text-align: center;
+  }
+  .nf-code {
+    font-family: var(--font-mono);
+    font-size: clamp(96px, 20vw, 180px);
+    font-weight: 700;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--o-400), var(--o-600));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.04em;
+    margin: 0;
+  }
+  .nf-title {
+    font-size: clamp(24px, 4vw, 34px);
+    font-weight: 700;
+    margin: 12px 0 10px;
+    color: var(--n-900);
+    letter-spacing: -0.015em;
+  }
+  .nf-lead {
+    color: var(--n-500);
+    font-size: 17px;
+    line-height: 1.6;
+    margin: 0 auto 28px;
+    max-width: 520px;
+  }
+  .nf-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .nf-links {
+    display: flex;
+    gap: 10px 22px;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 14px;
+    color: var(--n-500);
+  }
+  .nf-links a {
+    color: var(--o-600);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .nf-links a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<!-- Scroll progress bar -->
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- Living background orbs -->
+<div class="orbs" aria-hidden="true">
+  <span class="orb orb-1"></span>
+  <span class="orb orb-2"></span>
+  <span class="orb orb-3"></span>
+  <span class="orb orb-4"></span>
+</div>
+
+<!-- NAV -->
+<header class="topnav">
+  <div class="topnav-inner">
+    <a href="/" class="brand" aria-label="Conduiv home">
+      <svg class="brand-logo" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="nav-lg" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#FF7A33"/>
+            <stop offset="100%" stop-color="#EA580C"/>
+          </linearGradient>
+        </defs>
+        <rect width="40" height="40" rx="10" fill="url(#nav-lg)"/>
+        <path d="M28 12.5 A10 10 0 1 0 28 27.5" stroke="white" stroke-width="3.25" stroke-linecap="round"/>
+        <path d="M20.5 16 L25.5 20 L20.5 24" stroke="white" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>
+        <span class="brand-word"><b>Conduiv</b><span class="dot">.</span></span>
+        <span class="brand-kicker">Bilal Ghous · IT Systems</span>
+      </span>
+    </a>
+    <nav>
+      <ul class="navlinks">
+        <li><a href="/#work">Work</a></li>
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#skills">Skills</a></li>
+        <li><a href="/tools.html">Tools</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a href="/contact.html" class="btn btn-primary btn-sm" data-magnetic data-magnetic-strength="0.25">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<main class="nf">
+  <div class="nf-card">
+    <p class="nf-code">404</p>
+    <h1 class="nf-title">This page hit a dead end.</h1>
+    <p class="nf-lead">
+      The link you followed points to something that moved, was renamed, or never existed. No worries — the rest of the site is right where you left it.
+    </p>
+    <div class="nf-actions">
+      <a href="/" class="btn btn-primary" data-magnetic>
+        Back to homepage
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a href="/contact.html" class="btn btn-secondary" data-magnetic data-magnetic-strength="0.25">Contact Bilal</a>
+    </div>
+    <div class="nf-links">
+      <a href="/#work">See my work</a>
+      <a href="/#experience">Experience</a>
+      <a href="/tools.html">Free tools</a>
+      <a href="mailto:hello@conduiv.com">hello@conduiv.com</a>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="container">
+    <div class="foot-bottom">
+      <span>&copy; 2026 Conduiv · Bilal Ghous</span>
+      <span>Built on HTML &amp; CSS · Deployed on Cloudflare Pages</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/enhance.js" defer></script>
+</body>
+</html>

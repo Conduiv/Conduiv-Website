@@ -67,8 +67,11 @@ your project folder. The path will be something like
 git init
 
 # Tell git who you are (only needed the first time ever)
+# Use your GitHub "noreply" email so your real address never lands in a public commit.
+# Find yours at https://github.com/settings/emails (shown under "Keep my email addresses private").
+# It looks like: 12345678+Conduiv@users.noreply.github.com
 git config --global user.name  "Bilal Ghous"
-git config --global user.email "ghous.homelab@gmail.com"
+git config --global user.email "YOUR_ID+Conduiv@users.noreply.github.com"
 
 # Stage every file
 git add .

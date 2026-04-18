@@ -1241,4 +1241,28 @@ body { background: transparent; }
   @supports not (view-transition-name: root) {
     main { animation: none !important; }
   }
+  .scroll-progress::before { transition: none !important; }
+}
+
+/* ---------- Scroll progress bar ---------- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 9999;
+  pointer-events: none;
+  background: transparent;
+}
+.scroll-progress::before {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, var(--o-400), var(--o-600));
+  transform-origin: 0 50%;
+  transform: scaleX(var(--scroll, 0));
+  transition: transform 60ms linear;
+  box-shadow: 0 1px 8px rgba(234, 88, 12, 0.35);
 }

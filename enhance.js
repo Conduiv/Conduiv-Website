@@ -126,12 +126,38 @@
     els.forEach(function (el) { io.observe(el); });
   }
 
+  /* ---------- Scroll progress bar ---------- */
+  function initScrollProgress() {
+    var bar = document.querySelector('.scroll-progress');
+    if (!bar) return;
+    var ticking = false;
+    function update() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      var ratio = max > 0 ? h.scrollTop / max : 0;
+      if (ratio < 0) ratio = 0;
+      if (ratio > 1) ratio = 1;
+      bar.style.setProperty('--scroll', ratio.toFixed(4));
+      ticking = false;
+    }
+    function onScroll() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+  }
+
   /* ---------- Kickoff ---------- */
   function init() {
     initMagnetic();
     initTilt();
     initReveal();
     initCountUp();
+    initScrollProgress();
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
