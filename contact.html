@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Bilal Ghous · Conduiv</title>
+<meta name="description" content="Get in touch with Bilal Ghous (Conduiv). For hiring, collaboration, or consulting inquiries.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+</head>
+<body>
+
+<!-- Living background orbs -->
+<div class="orbs" aria-hidden="true">
+  <span class="orb orb-1"></span>
+  <span class="orb orb-2"></span>
+  <span class="orb orb-3"></span>
+  <span class="orb orb-4"></span>
+</div>
+
+<!-- NAV -->
+<header class="topnav">
+  <div class="topnav-inner">
+    <a href="index.html" class="brand" aria-label="Conduiv home">
+      <svg class="brand-logo" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="nav-lg" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#FF7A33"/>
+            <stop offset="100%" stop-color="#EA580C"/>
+          </linearGradient>
+        </defs>
+        <rect width="40" height="40" rx="10" fill="url(#nav-lg)"/>
+        <path d="M28 12.5 A10 10 0 1 0 28 27.5" stroke="white" stroke-width="3.25" stroke-linecap="round"/>
+        <path d="M20.5 16 L25.5 20 L20.5 24" stroke="white" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>
+        <span class="brand-word"><b>Conduiv</b><span class="dot">.</span></span>
+        <span class="brand-kicker">Bilal Ghous · IT Systems</span>
+      </span>
+    </a>
+    <nav>
+      <ul class="navlinks">
+        <li><a href="index.html#work">Work</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a href="mailto:hello@conduiv.com" class="btn btn-secondary btn-sm" data-magnetic data-magnetic-strength="0.25">Email directly</a>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow"><span class="pulse"></span> Responding within 1 business day</span>
+      <h2>Let's talk.</h2>
+      <p>Hiring me, collaborating on something, or exploring a future consulting engagement? Use the form below, or drop me a line at <a href="mailto:hello@conduiv.com">hello@conduiv.com</a>. The more context you can share up front, the more useful my first reply will be.</p>
+    </div>
+
+    <div class="form-wrap">
+      <!-- INTAKE FORM -->
+      <form class="form-card"
+            action="https://formspree.io/f/xgoryvqo"
+            method="POST"
+            id="intake-form">
+
+        <input type="hidden" name="_subject" value="New Conduiv contact intake">
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+        <h3 style="margin-bottom:4px;">Contact / Consultation Intake</h3>
+        <p style="font-size:13px; color: var(--n-500); margin-bottom: 18px;">
+          Fields marked <span style="color: var(--o-600);">*</span> are required.
+        </p>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="fullName">Full name <span class="req">*</span></label>
+            <input id="fullName" name="name" type="text" required placeholder="Jane Doe">
+          </div>
+          <div class="field">
+            <label for="company">Company / Organization</label>
+            <input id="company" name="company" type="text" placeholder="Acme Corp (optional if hiring me)">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="email">Work email <span class="req">*</span></label>
+            <input id="email" name="email" type="email" required placeholder="you@company.com">
+          </div>
+          <div class="field">
+            <label for="phone">Phone (optional)</label>
+            <input id="phone" name="phone" type="tel" placeholder="+1 (555) 555-5555">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="reason">Reason for reaching out <span class="req">*</span></label>
+            <select id="reason" name="reason" required>
+              <option value="">— Select one —</option>
+              <option>Hiring / full-time role</option>
+              <option>Contract / freelance IT engagement</option>
+              <option>Consulting — Microsoft 365 / Azure</option>
+              <option>Consulting — Security &amp; Compliance</option>
+              <option>Consulting — Automation &amp; Scripting</option>
+              <option>Collaboration / networking</option>
+              <option>Speaking / writing / interview</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="role">Your role</label>
+            <select id="role" name="role">
+              <option value="">— Optional —</option>
+              <option>Recruiter / Talent</option>
+              <option>Hiring Manager</option>
+              <option>Owner / Founder</option>
+              <option>IT Manager / Director</option>
+              <option>Operations Lead</option>
+              <option>Peer / Colleague</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="licensing">Current M365 Licensing <span class="help">— if consulting</span></label>
+            <select id="licensing" name="m365_licensing">
+              <option value="">— Select your primary tier —</option>
+              <option>N/A — not a consulting inquiry</option>
+              <option>None / Google Workspace</option>
+              <option>Microsoft 365 Business Basic</option>
+              <option>Microsoft 365 Business Standard</option>
+              <option>Microsoft 365 Business Premium</option>
+              <option>Microsoft 365 Apps for Business</option>
+              <option>Office 365 E1</option>
+              <option>Office 365 E3</option>
+              <option>Office 365 E5</option>
+              <option>Microsoft 365 E3</option>
+              <option>Microsoft 365 E5</option>
+              <option>Microsoft 365 F1 / F3 (Frontline)</option>
+              <option>Mixed / Not sure</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="challenge">Primary Infrastructure Challenge <span class="help">— if consulting</span></label>
+            <select id="challenge" name="primary_challenge">
+              <option value="">— What hurts most right now? —</option>
+              <option>N/A — not a consulting inquiry</option>
+              <option>Security posture / compliance gap</option>
+              <option>Legacy on-prem servers at end-of-life</option>
+              <option>Azure / M365 tenant sprawl or misconfiguration</option>
+              <option>Onboarding / offboarding is manual and error-prone</option>
+              <option>Licensing costs out of control</option>
+              <option>Recent M&amp;A — need to integrate a new company</option>
+              <option>No IT lead — need a fractional architect</option>
+              <option>Intune / endpoint management not deployed</option>
+              <option>Backup / DR / business continuity gap</option>
+              <option>Other (describe below)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="message">What's on your mind? <span class="req">*</span></label>
+          <textarea id="message" name="message" required placeholder="Role details, project context, or just say hi. Rough notes are fine."></textarea>
+        </div>
+
+        <div class="field">
+          <label class="checkrow">
+            <input type="checkbox" name="consent" value="Yes" required>
+            <span>I'm OK with Conduiv contacting me about this message. <span class="req">*</span></span>
+          </label>
+        </div>
+
+        <button class="btn btn-primary" type="submit" style="width:100%; padding:14px;" data-magnetic data-magnetic-strength="0.15">Send message</button>
+        <p style="font-size:12px; color: var(--n-500); margin-top:10px;">
+          Submitted via <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>, forwarded to hello@conduiv.com. No data is stored on this site.
+        </p>
+      </form>
+
+      <!-- Side panel -->
+      <aside class="stack-lg">
+        <div class="card">
+          <h3>What happens next</h3>
+          <ol style="padding-left:18px; font-size:14px; color: var(--n-700); margin-top:12px;">
+            <li style="margin-bottom:10px;"><strong>Within 1 business day</strong> — you'll get a written reply.</li>
+            <li style="margin-bottom:10px;"><strong>Intro call</strong> (30 min, free) — we map the ask to a concrete next step.</li>
+            <li style="margin-bottom:10px;"><strong>For consulting:</strong> written proposal with fixed scope, fixed price, clear deliverables.</li>
+            <li><strong>For hiring:</strong> happy to share additional writing, references, and system walkthroughs.</li>
+          </ol>
+        </div>
+
+        <div class="notice">
+          <strong>Prefer email?</strong> Write directly to
+          <a href="mailto:hello@conduiv.com">hello@conduiv.com</a>. Either works — the form just helps me triage faster.
+        </div>
+
+        <div class="card">
+          <h3>Confidentiality</h3>
+          <p style="font-size:14px; color: var(--n-700); margin-top:8px;">
+            Anything you share in intake is treated as confidential by default. Formal NDAs available on request before any tenant or infrastructure detail is exchanged.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="brand">
+          <svg class="brand-logo" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="foot-lg" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FF7A33"/>
+                <stop offset="100%" stop-color="#EA580C"/>
+              </linearGradient>
+            </defs>
+            <rect width="40" height="40" rx="10" fill="url(#foot-lg)"/>
+            <path d="M28 12.5 A10 10 0 1 0 28 27.5" stroke="white" stroke-width="3.25" stroke-linecap="round"/>
+            <path d="M20.5 16 L25.5 20 L20.5 24" stroke="white" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span><span class="brand-word"><b>Conduiv</b><span class="dot">.</span></span></span>
+        </a>
+        <p class="foot-about">
+          The professional home of Bilal Ghous — IT Specialist by day, Conduiv in the making. Technology that's conducive to growth.
+        </p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#work">Selected work</a></li>
+          <li><a href="index.html#experience">Experience</a></li>
+          <li><a href="index.html#skills">Skills</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Tools</h4>
+        <ul>
+          <li><a href="tools.html#tool-password">Password generator</a></li>
+          <li><a href="tools.html#tool-passphrase">Passphrase generator</a></li>
+          <li><a href="tools.html#tool-secret">Secret message</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@conduiv.com">hello@conduiv.com</a></li>
+          <li><a href="contact.html">Intake form</a></li>
+          <li><a href="https://www.linkedin.com/in/bilalghous/" target="_blank" rel="noopener">LinkedIn &rarr;</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Conduiv · Bilal Ghous</span>
+      <span>Built on HTML &amp; CSS · Deployed on Cloudflare Pages</span>
+    </div>
+  </div>
+</footer>
+
+<script src="enhance.js" defer></script>
+</body>
+</html>

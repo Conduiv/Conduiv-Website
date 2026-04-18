@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
+  <defs>
+    <linearGradient id="conduiv-g" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF7A33"/>
+      <stop offset="100%" stop-color="#EA580C"/>
+    </linearGradient>
+  </defs>
+  <rect width="40" height="40" rx="10" fill="url(#conduiv-g)"/>
+  <path d="M28 12.5 A10 10 0 1 0 28 27.5" stroke="white" stroke-width="3.25" stroke-linecap="round"/>
+  <path d="M20.5 16 L25.5 20 L20.5 24" stroke="white" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
