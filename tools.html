@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Security Tools — Conduiv</title>
+<meta name="description" content="Client-side security utilities from Conduiv. Password generator, passphrase generator, and AES-GCM encrypted secret links. Nothing is sent to a server.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+</head>
+<body>
+
+<!-- Living background orbs -->
+<div class="orbs" aria-hidden="true">
+  <span class="orb orb-1"></span>
+  <span class="orb orb-2"></span>
+  <span class="orb orb-3"></span>
+  <span class="orb orb-4"></span>
+</div>
+
+<!-- NAV -->
+<header class="topnav">
+  <div class="topnav-inner">
+    <a href="index.html" class="brand" aria-label="Conduiv home">
+      <svg class="brand-logo" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="nav-lg" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#FF7A33"/>
+            <stop offset="100%" stop-color="#EA580C"/>
+          </linearGradient>
+        </defs>
+        <rect width="40" height="40" rx="10" fill="url(#nav-lg)"/>
+        <path d="M28 12.5 A10 10 0 1 0 28 27.5" stroke="white" stroke-width="3.25" stroke-linecap="round"/>
+        <path d="M20.5 16 L25.5 20 L20.5 24" stroke="white" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>
+        <span class="brand-word"><b>Conduiv</b><span class="dot">.</span></span>
+        <span class="brand-kicker">Free security tools</span>
+      </span>
+    </a>
+    <nav>
+      <ul class="navlinks">
+        <li><a href="index.html#work">Work</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="tools.html" class="active">Tools</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-primary btn-sm" data-magnetic data-magnetic-strength="0.25">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow"><span class="pulse"></span> 100% client-side · nothing leaves your browser</span>
+      <h2>Free security tools.</h2>
+      <p>Small utilities for the everyday security work — rotating a password, sharing a credential safely, generating a strong passphrase. Everything runs in your browser, and I'm adding more over time.</p>
+    </div>
+
+    <div class="notice">
+      <strong>How this works:</strong> the password, passphrase, and secret-message tools are pure HTML / CSS / JavaScript — nothing you type leaves your browser. The IP lookup below is the one exception: it calls <a href="https://www.ipify.org/" target="_blank" rel="noopener">api.ipify.org</a> once so you can see the public address your browser presents.
+    </div>
+
+    <!-- IP ADDRESS — compact top-of-page field -->
+    <div class="ip-bar" id="tool-ip" data-reveal>
+      <label class="ip-bar-label" for="ip-address">Your public IP</label>
+      <input id="ip-address" type="text" readonly value="Looking up…" aria-live="polite">
+      <span class="ip-version" id="ip-version"></span>
+      <button class="btn btn-secondary btn-sm" id="ip-refresh" title="Refresh">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>
+        Refresh
+      </button>
+      <button class="btn btn-primary btn-sm" data-copy="ip-address">Copy</button>
+      <span class="copy-status" id="ip-copy-status">copied</span>
+    </div>
+
+    <div class="tools-layout">
+    <div class="tools-main">
+
+    <!-- TOOL 1: PASSWORD -->
+    <div class="tool-card" id="tool-password" data-reveal>
+      <h2><span class="ic">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </span> Password Generator</h2>
+      <p class="lead">
+        Cryptographically random passwords via <code>crypto.getRandomValues()</code>. Defaults follow NIST 800-63B guidance for high-entropy machine-generated secrets.
+      </p>
+
+      <div class="tool-controls">
+        <div class="field" style="margin:0;">
+          <label for="pw-length">Length</label>
+          <input id="pw-length" type="number" min="6" max="128" value="20">
+        </div>
+        <label class="checkrow" style="align-items:center; padding-top:24px;">
+          <input id="pw-upper" type="checkbox" checked>
+          <span>A–Z</span>
+        </label>
+        <label class="checkrow" style="align-items:center; padding-top:24px;">
+          <input id="pw-lower" type="checkbox" checked>
+          <span>a–z</span>
+        </label>
+        <label class="checkrow" style="align-items:center; padding-top:24px;">
+          <input id="pw-digits" type="checkbox" checked>
+          <span>0–9</span>
+        </label>
+        <label class="checkrow" style="align-items:center; padding-top:4px;">
+          <input id="pw-symbols" type="checkbox" checked>
+          <span>Symbols (!@#…)</span>
+        </label>
+        <label class="checkrow" style="align-items:center; padding-top:4px; grid-column: span 2;">
+          <input id="pw-noambig" type="checkbox">
+          <span>Avoid ambiguous (0/O, 1/l/I)</span>
+        </label>
+      </div>
+
+      <div class="tool-output">
+        <input id="pw-output" type="text" readonly placeholder="Click Generate">
+        <button class="btn btn-primary" id="pw-generate">Generate</button>
+        <button class="btn btn-secondary" data-copy="pw-output">Copy</button>
+      </div>
+      <div class="strength-bar"><span id="pw-strength"></span></div>
+      <div style="font-size:12.5px; color: var(--n-500); margin-top:8px;">
+        Estimated entropy: <strong id="pw-entropy">—</strong> bits
+        <span class="copy-status" id="pw-copy-status">copied</span>
+      </div>
+    </div>
+
+    <!-- TOOL 2: PASSPHRASE -->
+    <div class="tool-card" id="tool-passphrase" data-reveal data-reveal-delay="100">
+      <h2><span class="ic">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2l6 6-8 8H8v-4l8-8 2 2"/><path d="M4 13v7h7"/></svg>
+      </span> Passphrase Generator</h2>
+      <p class="lead">
+        Diceware-style passphrases — random words joined by a separator. Easier to type and remember; very strong with 4+ words.
+      </p>
+
+      <div class="tool-controls">
+        <div class="field" style="margin:0;">
+          <label for="kp-words">Word count</label>
+          <input id="kp-words" type="number" min="3" max="12" value="5">
+        </div>
+        <div class="field" style="margin:0;">
+          <label for="kp-sep">Separator</label>
+          <select id="kp-sep">
+            <option value="-">- (dash)</option>
+            <option value=".">. (dot)</option>
+            <option value="_">_ (underscore)</option>
+            <option value=" ">space</option>
+            <option value="">none</option>
+          </select>
+        </div>
+        <label class="checkrow" style="align-items:center; padding-top:24px;">
+          <input id="kp-cap" type="checkbox" checked>
+          <span>Capitalize</span>
+        </label>
+        <label class="checkrow" style="align-items:center; padding-top:24px;">
+          <input id="kp-num" type="checkbox" checked>
+          <span>Append a digit</span>
+        </label>
+      </div>
+
+      <div class="tool-output">
+        <input id="kp-output" type="text" readonly placeholder="Click Generate">
+        <button class="btn btn-primary" id="kp-generate">Generate</button>
+        <button class="btn btn-secondary" data-copy="kp-output">Copy</button>
+      </div>
+      <div style="font-size:12.5px; color: var(--n-500); margin-top:8px;">
+        Approx. entropy: <strong id="kp-entropy">—</strong> bits
+        <span class="copy-status" id="kp-copy-status">copied</span>
+      </div>
+    </div>
+
+    <!-- TOOL 3: SECRET MESSAGE -->
+    <div class="tool-card" id="tool-secret" data-reveal data-reveal-delay="180">
+      <h2><span class="ic">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 1 0 7-7l-9 9v3h3l9-9a5 5 0 0 0-7-7"/></svg>
+      </span> Secret Message (Token Link)</h2>
+      <p class="lead">
+        Send a credential or short message as a self-contained link. AES-GCM encrypts the payload in your browser; the key lives in the URL fragment (the part after <code>#</code>), which never reaches the server. The recipient opens the link, the page decrypts client-side, and the plaintext is wiped from memory after viewing.
+      </p>
+
+      <div class="notice">
+        <strong>Demo mode.</strong> This page encodes the full ciphertext into the URL itself, so no backend is needed for the Conduiv site. A production deployment would POST the ciphertext to a server (Cloudflare KV / Workers) keyed by an ID; the decryption key would still live only in the URL fragment, and the record would burn after first view.
+      </div>
+
+      <div class="field">
+        <label for="sec-input">Message to encrypt</label>
+        <textarea id="sec-input" placeholder="Paste a password, API key, or short note here..."></textarea>
+      </div>
+      <div class="tool-controls" style="grid-template-columns: 1fr 3fr;">
+        <div class="field" style="margin:0;">
+          <label for="sec-ttl">Expiration (informational)</label>
+          <select id="sec-ttl">
+            <option value="1h">1 hour</option>
+            <option value="24h" selected>24 hours</option>
+            <option value="7d">7 days</option>
+            <option value="once">After 1 view</option>
+          </select>
+        </div>
+        <div style="align-self: end; display: flex; gap: 10px; flex-wrap: wrap;">
+          <button class="btn btn-primary" id="sec-generate">Generate secret link</button>
+          <button class="btn btn-secondary" id="sec-decrypt-btn">Decrypt link below</button>
+        </div>
+      </div>
+
+      <div class="secret-output" id="sec-link-out" style="display:none;"></div>
+      <div style="margin-top:10px; display:flex; gap:10px; align-items:center;">
+        <button class="btn btn-secondary btn-sm" data-copy="sec-link-text" id="sec-copy-btn" style="display:none;">Copy link</button>
+        <span class="copy-status" id="sec-copy-status">copied</span>
+        <input type="hidden" id="sec-link-text" value="">
+      </div>
+
+      <hr class="hr">
+
+      <div class="field">
+        <label for="sec-paste">Decrypt a Conduiv secret link</label>
+        <input id="sec-paste" type="text" placeholder="Paste the full secret link here">
+      </div>
+      <div class="secret-output" id="sec-decrypted" style="display:none;"></div>
+    </div>
+
+    <p style="font-size:14px; color: var(--n-500);">
+      Need another tool? <a href="contact.html">Tell me what would actually be useful</a> — I keep a list.
+    </p>
+
+    </div><!-- /.tools-main -->
+
+    <aside class="tools-sidebar" aria-labelledby="toolbox-heading">
+      <div class="sidebar-card" data-reveal>
+        <div class="sidebar-head">
+          <span class="eyebrow" style="margin:0;"><span class="pulse"></span> Knowledge base</span>
+          <h3 id="toolbox-heading">My IT toolbox</h3>
+          <p class="sidebar-note">Software I reach for day-to-day. Not affiliated, not sponsored — just what works.</p>
+        </div>
+
+        <div class="sidebar-group">
+          <h4>Passwords &amp; secrets</h4>
+          <ul>
+            <li><a href="https://keepass.info/" target="_blank" rel="noopener">KeePass <span class="sidebar-meta">password manager</span></a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-group">
+          <h4>Editors &amp; IDE</h4>
+          <ul>
+            <li><a href="https://notepad-plus-plus.org/" target="_blank" rel="noopener">Notepad++ <span class="sidebar-meta">with Compare plugin</span></a></li>
+            <li><a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VS Code <span class="sidebar-meta">Python + PowerShell</span></a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-group">
+          <h4>Networking &amp; diagnostics</h4>
+          <ul>
+            <li><a href="https://www.adremsoft.com/netcrunch/tools/" target="_blank" rel="noopener">NetCrunch Tools <span class="sidebar-meta">free IP/DNS kit</span></a></li>
+            <li><a href="https://www.advanced-ip-scanner.com/" target="_blank" rel="noopener">Advanced IP Scanner</a></li>
+            <li><a href="https://www.nirsoft.net/" target="_blank" rel="noopener">NirSoft utilities</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-group">
+          <h4>Files &amp; disk</h4>
+          <ul>
+            <li><a href="https://windirstat.net/" target="_blank" rel="noopener">WinDirStat <span class="sidebar-meta">disk usage visualizer</span></a></li>
+            <li><a href="https://www.voidtools.com/" target="_blank" rel="noopener">Everything <span class="sidebar-meta">instant file search</span></a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-group">
+          <h4>Remote &amp; transfer</h4>
+          <ul>
+            <li><a href="https://learn.microsoft.com/en-us/sysinternals/downloads/rdcman" target="_blank" rel="noopener">RDCMan <span class="sidebar-meta">Sysinternals</span></a></li>
+            <li><a href="https://winscp.net/eng/index.php" target="_blank" rel="noopener">WinSCP <span class="sidebar-meta">SFTP/SCP client</span></a></li>
+            <li><a href="https://www.putty.org/" target="_blank" rel="noopener">PuTTY <span class="sidebar-meta">SSH / serial</span></a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-group">
+          <h4>Migration</h4>
+          <ul>
+            <li><a href="https://www.forensit.com/move-computer.html" target="_blank" rel="noopener">ForensiT User Profile Wizard</a></li>
+            <li><a href="https://www.forensit.com/domain-migration.html" target="_blank" rel="noopener">ForensiT Domain Migration</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-group">
+          <h4>Capture &amp; screenshots</h4>
+          <ul>
+            <li><a href="https://obsproject.com/" target="_blank" rel="noopener">OBS Studio <span class="sidebar-meta">screen recording</span></a></li>
+            <li><a href="https://getgreenshot.org/" target="_blank" rel="noopener">Greenshot <span class="sidebar-meta">snip &amp; annotate</span></a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-group">
+          <h4>Cloud &amp; scripting</h4>
+          <ul>
+            <li><a href="https://learn.microsoft.com/en-us/cli/azure/" target="_blank" rel="noopener">Azure CLI</a></li>
+            <li><a href="https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.2" target="_blank" rel="noopener">PowerShell 7</a></li>
+            <li><a href="https://git-scm.com/download/win" target="_blank" rel="noopener">Git for Windows</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-group">
+          <h4>Productivity</h4>
+          <ul>
+            <li><a href="https://support.microsoft.com/en-us/office/use-the-web-version-of-outlook-like-a-desktop-app-b360bd9a-00dc-43a4-bdf8-71cdeeb78e83" target="_blank" rel="noopener">Outlook on the web <span class="sidebar-meta">pin as desktop app</span></a></li>
+          </ul>
+        </div>
+
+        <p class="sidebar-footnote">
+          Links open in a new tab. Shoot me a <a href="contact.html">message</a> if a tool here belongs in every admin's kit and I'll add it.
+        </p>
+      </div>
+    </aside>
+
+    </div><!-- /.tools-layout -->
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="brand">
+          <svg class="brand-logo" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="foot-lg" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FF7A33"/>
+                <stop offset="100%" stop-color="#EA580C"/>
+              </linearGradient>
+            </defs>
+            <rect width="40" height="40" rx="10" fill="url(#foot-lg)"/>
+            <path d="M28 12.5 A10 10 0 1 0 28 27.5" stroke="white" stroke-width="3.25" stroke-linecap="round"/>
+            <path d="M20.5 16 L25.5 20 L20.5 24" stroke="white" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span><span class="brand-word"><b>Conduiv</b><span class="dot">.</span></span></span>
+        </a>
+        <p class="foot-about">
+          The professional home of Bilal Ghous — IT Specialist by day, Conduiv in the making. Technology that's conducive to growth.
+        </p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#work">Selected work</a></li>
+          <li><a href="index.html#experience">Experience</a></li>
+          <li><a href="index.html#skills">Skills</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Tools</h4>
+        <ul>
+          <li><a href="tools.html#tool-password">Password generator</a></li>
+          <li><a href="tools.html#tool-passphrase">Passphrase generator</a></li>
+          <li><a href="tools.html#tool-secret">Secret message</a></li>
+          <li><a href="tools.html#tool-ip">IP lookup</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@conduiv.com">hello@conduiv.com</a></li>
+          <li><a href="contact.html">Intake form</a></li>
+          <li><a href="https://www.linkedin.com/in/bilalghous/" target="_blank" rel="noopener">LinkedIn &rarr;</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Conduiv · Bilal Ghous</span>
+      <span>All tools client-side · No tracking · No telemetry</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===================== Shared helpers ===================== */
+const $ = (id) => document.getElementById(id);
+function flashCopy(statusId) {
+  const s = $(statusId); if (!s) return;
+  s.classList.add('show');
+  setTimeout(() => s.classList.remove('show'), 1500);
+}
+async function copyFromInput(inputId, statusId) {
+  const el = $(inputId); if (!el) return;
+  try { await navigator.clipboard.writeText(el.value || ''); }
+  catch { el.select && el.select(); document.execCommand('copy'); }
+  flashCopy(statusId);
+}
+document.querySelectorAll('[data-copy]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.getAttribute('data-copy');
+    let statusId = 'pw-copy-status';
+    if (target.startsWith('kp')) statusId = 'kp-copy-status';
+    if (target.startsWith('sec')) statusId = 'sec-copy-status';
+    copyFromInput(target, statusId);
+  });
+});
+
+/* ===================== Tool 1: Password ===================== */
+const PW_LOWER = 'abcdefghijklmnopqrstuvwxyz';
+const PW_UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const PW_DIGITS = '0123456789';
+const PW_SYMBOLS = '!@#$%^&*()-_=+[]{};:,.<>?/';
+const PW_AMBIG = /[0O1lI]/g;
+
+function randInt(max) {
+  const buf = new Uint32Array(1);
+  const limit = Math.floor(0xFFFFFFFF / max) * max;
+  let x;
+  do { crypto.getRandomValues(buf); x = buf[0]; } while (x >= limit);
+  return x % max;
+}
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = randInt(i + 1);
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+function generatePassword() {
+  const len = Math.max(6, Math.min(128, parseInt($('pw-length').value, 10) || 20));
+  let pool = '';
+  const required = [];
+  if ($('pw-lower').checked)  { pool += PW_LOWER;  required.push(PW_LOWER); }
+  if ($('pw-upper').checked)  { pool += PW_UPPER;  required.push(PW_UPPER); }
+  if ($('pw-digits').checked) { pool += PW_DIGITS; required.push(PW_DIGITS); }
+  if ($('pw-symbols').checked){ pool += PW_SYMBOLS; required.push(PW_SYMBOLS); }
+  if ($('pw-noambig').checked) {
+    pool = pool.replace(PW_AMBIG, '');
+    for (let i = 0; i < required.length; i++) required[i] = required[i].replace(PW_AMBIG, '');
+  }
+  if (!pool) {
+    $('pw-output').value = 'Pick at least one character set.';
+    $('pw-strength').style.width = '0%';
+    $('pw-entropy').textContent = '0';
+    return;
+  }
+  const chars = [];
+  for (const set of required) chars.push(set[randInt(set.length)]);
+  while (chars.length < len) chars.push(pool[randInt(pool.length)]);
+  shuffle(chars);
+  const pw = chars.slice(0, len).join('');
+  $('pw-output').value = pw;
+
+  const entropy = Math.round(len * Math.log2(pool.length));
+  $('pw-entropy').textContent = entropy;
+  const pct = Math.max(5, Math.min(100, ((entropy - 28) / (128 - 28)) * 100));
+  $('pw-strength').style.width = pct + '%';
+}
+$('pw-generate').addEventListener('click', generatePassword);
+window.addEventListener('DOMContentLoaded', generatePassword);
+
+/* ===================== Tool 2: Passphrase ===================== */
+const WORDS = [
+  "anchor","amber","arrow","atlas","aurora","autumn","azure","badge","banjo","basin",
+  "beacon","beetle","bishop","bison","blaze","bolt","boreal","branch","brave","breeze",
+  "bronze","brook","buffalo","bunker","cactus","calm","candle","canyon","cargo","castle",
+  "cedar","cello","cherry","cipher","circuit","citrus","clarity","clay","clover","cobalt",
+  "comet","compass","copper","coral","cosmos","craft","crater","cricket","crimson","crystal",
+  "current","cypher","dawn","delta","desert","diamond","drift","driver","dynamo","ebony",
+  "eclipse","ember","engine","equator","ether","explorer","fable","falcon","feather",
+  "fern","fiber","flame","flint","forest","fossil","foundry","fox","frost","galaxy",
+  "garnet","gateway","glacier","glade","glass","gold","granite","gravel","grove","harbor",
+  "harvest","hatch","hazel","helix","hemlock","heron","hickory","horizon","hound","hunter",
+  "ice","iguana","iron","ivory","ivy","jade","jasmine","jasper","javelin","jet",
+  "jungle","kayak","keel","kelp","kettle","kiln","kindle","kiwi","knight","krypton",
+  "labyrinth","lagoon","lake","lance","lantern","lark","lattice","leaf","ledger","lemur",
+  "lens","leopard","library","lichen","lighthouse","linen","lobster","locker","lotus","lumen",
+  "lynx","magnet","magpie","maple","marble","mariner","marsh","mast","matrix","meadow",
+  "medal","mercury","meteor","midnight","mirror","mist","mitten","monarch","moon","moss",
+  "moth","mountain","mustang","nautilus","nebula","needle","nest","nimbus","north","oak",
+  "oasis","obsidian","ocean","octave","octopus","onyx","opal","orange","orbit","orchid",
+  "otter","owl","oyster","palace","palm","panda","panther","paper","pearl","pebble",
+  "pepper","pigeon","pilot","pine","pioneer","piston","pixel","planet","platinum","plover",
+  "polar","pollen","poplar","portal","prairie","prism","puffin","pulse","quartz","quasar",
+  "quill","quiver","rabbit","raccoon","raft","rainbow","raven","redwood","reef","relay",
+  "rhino","ribbon","ridge","rift","river","robin","rocket","root","rose","ruby",
+  "saber","saffron","sage","sailor","salmon","sand","sapphire","satellite","scout","scribe",
+  "seal","sequoia","shadow","shore","silk","silver","skipper","slate","sled","sleet",
+  "smoke","snow","solar","sonar","sparrow","spire","spruce","squirrel","stag","star",
+  "starling","steel","stellar","stone","storm","stream","summit","surf","swan","sycamore",
+  "tackle","tamarack","tango","tapir","temple","terrain","thicket","thistle","thunder","tiger",
+  "timber","topaz","torch","tortoise","totem","tower","trail","tribute","trout","tundra",
+  "turbine","turtle","twig","umber","unicorn","valley","vapor","velvet","verdant","vessel",
+  "violet","viper","volt","walnut","walrus","wasp","whisper","willow","wind","winter",
+  "wolf","wombat","wren","yarrow","yew","zebra","zenith","zephyr","zinc","zircon"
+];
+function generatePassphrase() {
+  const n = Math.max(3, Math.min(12, parseInt($('kp-words').value, 10) || 5));
+  const sep = $('kp-sep').value;
+  const cap = $('kp-cap').checked;
+  const num = $('kp-num').checked;
+  const picked = [];
+  for (let i = 0; i < n; i++) {
+    let w = WORDS[randInt(WORDS.length)];
+    if (cap) w = w.charAt(0).toUpperCase() + w.slice(1);
+    picked.push(w);
+  }
+  let phrase = picked.join(sep);
+  if (num) phrase += sep + randInt(100);
+  $('kp-output').value = phrase;
+  const ent = Math.round(n * Math.log2(WORDS.length) + (num ? 6.6 : 0));
+  $('kp-entropy').textContent = ent;
+}
+$('kp-generate').addEventListener('click', generatePassphrase);
+window.addEventListener('DOMContentLoaded', generatePassphrase);
+
+/* ===================== Tool 3: Secret Message ===================== */
+function bytesToB64Url(bytes) {
+  let bin = '';
+  for (const b of bytes) bin += String.fromCharCode(b);
+  return btoa(bin).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+}
+function b64UrlToBytes(s) {
+  s = s.replace(/-/g,'+').replace(/_/g,'/');
+  while (s.length % 4) s += '=';
+  const bin = atob(s);
+  const out = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+  return out;
+}
+async function encryptSecret(message) {
+  const enc = new TextEncoder();
+  const key = await crypto.subtle.generateKey({ name:'AES-GCM', length:256 }, true, ['encrypt','decrypt']);
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const ct = await crypto.subtle.encrypt({ name:'AES-GCM', iv }, key, enc.encode(message));
+  const rawKey = new Uint8Array(await crypto.subtle.exportKey('raw', key));
+  const blob = new Uint8Array(iv.length + ct.byteLength);
+  blob.set(iv, 0); blob.set(new Uint8Array(ct), iv.length);
+  return { blob, rawKey };
+}
+async function decryptSecret(blob, rawKey) {
+  const iv = blob.slice(0, 12);
+  const ct = blob.slice(12);
+  const key = await crypto.subtle.importKey('raw', rawKey, { name:'AES-GCM' }, false, ['decrypt']);
+  const pt = await crypto.subtle.decrypt({ name:'AES-GCM', iv }, key, ct);
+  return new TextDecoder().decode(pt);
+}
+
+$('sec-generate').addEventListener('click', async () => {
+  const msg = $('sec-input').value.trim();
+  if (!msg) {
+    $('sec-link-out').style.display = 'block';
+    $('sec-link-out').textContent = 'Type a message to encrypt first.';
+    return;
+  }
+  try {
+    const { blob, rawKey } = await encryptSecret(msg);
+    const payload = bytesToB64Url(blob);
+    const keyB64  = bytesToB64Url(rawKey);
+    const link = `${location.origin}${location.pathname}?t=${payload}#k=${keyB64}`;
+    $('sec-link-out').style.display = 'block';
+    $('sec-link-out').textContent = link;
+    $('sec-link-text').value = link;
+    $('sec-copy-btn').style.display = 'inline-flex';
+    $('sec-input').value = '';
+  } catch (e) {
+    $('sec-link-out').style.display = 'block';
+    $('sec-link-out').textContent = 'Encryption failed: ' + e.message;
+  }
+});
+
+async function tryDecryptFromUrl(urlStr) {
+  let url;
+  try { url = new URL(urlStr); }
+  catch { return 'Not a valid URL.'; }
+  const t = url.searchParams.get('t');
+  const frag = url.hash.startsWith('#') ? url.hash.slice(1) : url.hash;
+  const params = new URLSearchParams(frag);
+  const k = params.get('k');
+  if (!t || !k) return 'Link is missing the token (?t=) or the key (#k=).';
+  try {
+    const blob = b64UrlToBytes(t);
+    const rawKey = b64UrlToBytes(k);
+    return await decryptSecret(blob, rawKey);
+  } catch (e) {
+    return 'Decryption failed. The link may be corrupted, expired, or already viewed.';
+  }
+}
+
+$('sec-decrypt-btn').addEventListener('click', async () => {
+  const link = $('sec-paste').value.trim();
+  if (!link) {
+    $('sec-decrypted').style.display = 'block';
+    $('sec-decrypted').textContent = 'Paste a Conduiv secret link above first.';
+    return;
+  }
+  const out = await tryDecryptFromUrl(link);
+  $('sec-decrypted').style.display = 'block';
+  $('sec-decrypted').textContent = out;
+});
+
+window.addEventListener('DOMContentLoaded', async () => {
+  if (location.search.includes('t=') && location.hash.includes('k=')) {
+    const result = await tryDecryptFromUrl(location.href);
+    $('sec-decrypted').style.display = 'block';
+    $('sec-decrypted').textContent = result;
+    $('sec-paste').value = location.href;
+    history.replaceState({}, '', location.pathname + '#tool-secret');
+  }
+});
+
+// =========================================================
+// IP ADDRESS — compact top-bar lookup (ipify, CORS-friendly, no key)
+// =========================================================
+function detectIpVersion(ip) {
+  if (!ip) return '';
+  if (ip.indexOf(':') !== -1) return 'IPv6';
+  if (/^\d{1,3}(\.\d{1,3}){3}$/.test(ip)) return 'IPv4';
+  return '';
+}
+
+async function lookupIp() {
+  const field = $('ip-address');
+  const ver   = $('ip-version');
+  const btn   = $('ip-refresh');
+  if (!field) return;
+
+  field.value = 'Looking up…';
+  ver.textContent = '';
+  if (btn) btn.disabled = true;
+
+  try {
+    const res = await fetch('https://api.ipify.org?format=json');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    const ip = data.ip || '';
+    field.value = ip || 'Unknown';
+    ver.textContent = detectIpVersion(ip);
+  } catch (err) {
+    field.value = 'Lookup failed — check your connection';
+  } finally {
+    if (btn) btn.disabled = false;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('ip-refresh');
+  if (btn) btn.addEventListener('click', lookupIp);
+  // Auto-run once on page load so the field is populated without a click.
+  lookupIp();
+});
+</script>
+<script src="enhance.js" defer></script>
+</body>
+</html>
