@@ -569,6 +569,11 @@ p  { color: var(--n-700); }
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
+/* When only one quote is present, center it at a readable width */
+.testimonials:has(> .quote:only-child) {
+  grid-template-columns: minmax(0, 640px);
+  justify-content: center;
+}
 .quote {
   position: relative;
   background: #fff;
