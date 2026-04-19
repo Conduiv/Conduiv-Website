@@ -1244,6 +1244,200 @@ body { background: transparent; }
   .scroll-progress::before { transition: none !important; }
 }
 
+/* ---------- Engagement Models ---------- */
+.engagement-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 24px;
+}
+@media (max-width: 960px) {
+  .engagement-grid { grid-template-columns: 1fr; }
+}
+.engagement {
+  position: relative;
+  background: var(--n-0);
+  border: 1px solid var(--n-100);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.engagement:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--o-200);
+}
+.engagement.featured {
+  border-color: var(--o-400);
+  background: linear-gradient(180deg, #fff, #fff8f2);
+  box-shadow: 0 0 0 1px var(--o-300) inset, var(--shadow-md);
+}
+.eng-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--n-500);
+  background: var(--n-50);
+  border: 1px solid var(--n-100);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+  align-self: flex-start;
+}
+.eng-badge-hot {
+  color: var(--n-0);
+  background: linear-gradient(135deg, var(--o-400), var(--o-600));
+  border-color: transparent;
+}
+.engagement h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+  color: var(--n-900);
+}
+.eng-meta {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--o-600);
+  font-weight: 600;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dot-sep { color: var(--n-300); }
+.eng-body {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--n-500);
+  margin: 0 0 16px;
+}
+.eng-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+  font-size: 14px;
+  color: var(--n-700);
+}
+.eng-list li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+.eng-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--o-500);
+  font-weight: 700;
+}
+.eng-tag {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px dashed var(--n-100);
+  font-size: 12.5px;
+  color: var(--n-500);
+  font-style: italic;
+}
+.eng-footer {
+  margin-top: 28px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--n-500);
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- FAQ ---------- */
+.faq-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.faq {
+  background: var(--n-0);
+  border: 1px solid var(--n-100);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-xs);
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.faq[open] {
+  border-color: var(--o-200);
+  box-shadow: var(--shadow-sm);
+}
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px 22px;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--n-900);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  transition: color 0.2s ease;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+";
+  font-family: var(--font-mono);
+  font-size: 22px;
+  color: var(--o-500);
+  font-weight: 400;
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+.faq[open] summary::after {
+  content: "−";
+  transform: rotate(180deg);
+}
+.faq summary:hover { color: var(--o-600); }
+.faq-body {
+  padding: 0 22px 20px;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--n-500);
+}
+
+/* ---------- Print stylesheet ---------- */
+@media print {
+  .orbs, .scroll-progress, .topnav, .nav-cta, .hero-ctas, .foot,
+  .footer, .turnstile-widget, [data-turnstile] { display: none !important; }
+  body { background: white; color: black; }
+  .hero, .section, .section-tight {
+    padding: 12mm 0 !important;
+    break-inside: avoid;
+  }
+  .case, .engagement, .quote, .t-item {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+  a { color: black; text-decoration: none; }
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 10px;
+    color: #666;
+  }
+  .metric .n, h1 .grad, .grad {
+    -webkit-text-fill-color: currentColor !important;
+    background: none !important;
+    color: #c2410c !important;
+  }
+}
+
 /* ---------- Scroll progress bar ---------- */
 .scroll-progress {
   position: fixed;
