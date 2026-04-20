@@ -6,3 +6,9 @@ Thumbs.db
 node_modules/
 .env
 Bilal Ghous - IT(3).docx
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
