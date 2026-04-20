@@ -1,0 +1,6 @@
+Contact: mailto:security@conduiv.com
+Contact: mailto:hello@conduiv.com
+Expires: 2027-04-18T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://conduiv.com/.well-known/security.txt
+Policy: https://github.com/Conduiv/Conduiv-Website/blob/main/SECURITY.md
